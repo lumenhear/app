@@ -1,21 +1,22 @@
 {
   "name": "LUMEN Speech & Hearing",
   "short_name": "LUMEN",
-  "description": "Speech therapy and hearing aid care app for patients and families",
-  "start_url": "/",
+  "description": "Your personal guide for speech therapy and hearing aid care.",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#f5faff",
   "theme_color": "#4a90e2",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "assets/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "/assets/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
     },
     {
-      "src": "assets/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "/assets/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
 }
