@@ -1,70 +1,575 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LUMEN Speech & Hearing</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <link rel="manifest" href="manifest.webmanifest"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMEN Speech & Hearing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <style>
+        :root {
+            --primary-blue: #4a90e2;
+            --light-blue: #f5faff;
+            --dark-blue: #2c3e50;
+            --accent-yellow: #f39c12;
+            --text-dark: #333;
+            --text-light: #fff;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-blue);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 15px 20px;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .home-screen {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-button i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .nav-button h2 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+        }
+
+        .nav-button p {
+            color: #666;
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+            background: white;
+            border-radius: var(--radius);
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .back-button {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .activity-card, .video-card {
+            background: var(--light-blue);
+            border-radius: var(--radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #3a80d2;
+        }
+
+        .entry-list {
+            margin-top: 20px;
+        }
+
+        .entry-item {
+            background: var(--light-blue);
+            border-radius: var(--radius);
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 160px;
+            background-color: #ddd;
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-thumbnail i {
+            font-size: 3rem;
+            color: var(--primary-blue);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .home-screen {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-button {
+                min-height: 150px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="assets/logo.png" alt="LUMEN Logo" class="logo"/>
-    <h1>LUMEN Speech & Hearing</h1>
-  </header>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-ear-listen"></i>
+            </div>
+            <div class="logo-text">LUMEN Speech & Hearing</div>
+        </div>
+    </header>
 
-  <main>
-    <section class="home">
-      <button onclick="showSection('speech')">🎤 Speech Therapy</button>
-      <button onclick="showSection('hearing')">👂 Hearing Aid Care</button>
-      <button onclick="showSection('progress')">📊 Progress</button>
-      <button onclick="showSection('appointments')">📅 Appointments</button>
-      <button onclick="showSection('videos')">🎥 Videos & Tips</button>
-    </section>
+    <div class="container">
+        <div id="home" class="section active">
+            <h1>Welcome to LUMEN</h1>
+            <p>Your companion for speech therapy and hearing aid care</p>
+            
+            <div class="home-screen">
+                <div class="nav-button" onclick="showSection('speech-therapy')">
+                    <i class="fas fa-microphone"></i>
+                    <h2>Speech Therapy</h2>
+                    <p>Practice exercises and activities</p>
+                </div>
+                
+                <div class="nav-button" onclick="showSection('hearing-aid-care')">
+                    <i class="fas fa-ear-deaf"></i>
+                    <h2>Hearing Aid Care</h2>
+                    <p>Maintenance guides and tips</p>
+                </div>
+                
+                <div class="nav-button" onclick="showSection('progress-tracker')">
+                    <i class="fas fa-chart-line"></i>
+                    <h2>Progress Tracker</h2>
+                    <p>Monitor your improvement</p>
+                </div>
+                
+                <div class="nav-button" onclick="showSection('appointments')">
+                    <i class="fas fa-calendar-check"></i>
+                    <h2>Appointments</h2>
+                    <p>Schedule and manage visits</p>
+                </div>
+                
+                <div class="nav-button" onclick="showSection('videos-tips')">
+                    <i class="fas fa-video"></i>
+                    <h2>Videos & Tips</h2>
+                    <p>Educational resources</p>
+                </div>
+            </div>
+        </div>
 
-    <section id="speech" class="hidden">
-      <h2>Speech Therapy</h2>
-      <ul id="speechList"></ul>
-    </section>
+        <!-- Speech Therapy Section -->
+        <div id="speech-therapy" class="section">
+            <button class="back-button" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Speech Therapy Activities</h2>
+            
+            <div class="activity-card">
+                <h3>Say /pa/</h3>
+                <p>Repeat 10 times with correct lip closure.</p>
+                <button class="btn"><i class="fas fa-play"></i> Start Exercise</button>
+            </div>
+            
+            <div class="activity-card">
+                <h3>Say /ta/</h3>
+                <p>Repeat 10 times with correct tongue placement.</p>
+                <button class="btn"><i class="fas fa-play"></i> Start Exercise</button>
+            </div>
+            
+            <div class="activity-card">
+                <h3>Say /ka/</h3>
+                <p>Repeat 10 times with correct back tongue elevation.</p>
+                <button class="btn"><i class="fas fa-play"></i> Start Exercise</button>
+            </div>
+        </div>
 
-    <section id="hearing" class="hidden">
-      <h2>Hearing Aid Care</h2>
-      <ul id="hearingList"></ul>
-    </section>
+        <!-- Hearing Aid Care Section -->
+        <div id="hearing-aid-care" class="section">
+            <button class="back-button" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Hearing Aid Care</h2>
+            
+            <div class="activity-card">
+                <h3>Change Battery</h3>
+                <p>Open door, replace with new battery.</p>
+                <button class="btn"><i class="fas fa-play"></i> View Guide</button>
+            </div>
+            
+            <div class="activity-card">
+                <h3>Clean Earpiece</h3>
+                <p>Use soft brush to remove earwax and debris.</p>
+                <button class="btn"><i class="fas fa-play"></i> View Guide</button>
+            </div>
+            
+            <div class="activity-card">
+                <h3>Daily Maintenance</h3>
+                <p>Check for wax, moisture, and damage.</p>
+                <button class="btn"><i class="fas fa-play"></i> View Guide</button>
+            </div>
+        </div>
 
-    <section id="progress" class="hidden">
-      <h2>Progress Tracker</h2>
-      <form id="progressForm">
-        <input type="text" placeholder="Patient Name" required/>
-        <input type="date" required/>
-        <input type="text" placeholder="Activity Done" required/>
-        <button type="submit">Add Progress</button>
-      </form>
-      <ul id="progressList"></ul>
-    </section>
+        <!-- Progress Tracker Section -->
+        <div id="progress-tracker" class="section">
+            <button class="back-button" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Progress Tracker</h2>
+            
+            <form id="progress-form">
+                <div class="form-group">
+                    <label for="patient-name">Patient Name</label>
+                    <input type="text" id="patient-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="activity-date">Date</label>
+                    <input type="date" id="activity-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="activity-done">Activity Done</label>
+                    <textarea id="activity-done" rows="3" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Save Entry</button>
+            </form>
+            
+            <div class="entry-list" id="progress-entries">
+                <h3>Previous Entries</h3>
+                <!-- Entries will be added here dynamically -->
+            </div>
+        </div>
 
-    <section id="appointments" class="hidden">
-      <h2>Appointments</h2>
-      <form id="appointmentForm">
-        <input type="text" placeholder="Name" required/>
-        <input type="tel" placeholder="Phone" required/>
-        <input type="date" required/>
-        <textarea placeholder="Notes"></textarea>
-        <button type="submit">Book Appointment</button>
-      </form>
-      <ul id="appointmentList"></ul>
-    </section>
+        <!-- Appointments Section -->
+        <div id="appointments" class="section">
+            <button class="back-button" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Appointments</h2>
+            
+            <form id="appointment-form">
+                <div class="form-group">
+                    <label for="appointment-name">Name</label>
+                    <input type="text" id="appointment-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="appointment-phone">Phone</label>
+                    <input type="tel" id="appointment-phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="appointment-date">Date & Time</label>
+                    <input type="datetime-local" id="appointment-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="appointment-notes">Notes</label>
+                    <textarea id="appointment-notes" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Save Appointment</button>
+            </form>
+            
+            <div class="entry-list" id="appointment-entries">
+                <h3>Upcoming Appointments</h3>
+                <!-- Appointments will be added here dynamically -->
+            </div>
+        </div>
 
-    <section id="videos" class="hidden">
-      <h2>Videos & Tips</h2>
-      <ul id="videoList"></ul>
-    </section>
-  </main>
+        <!-- Videos & Tips Section -->
+        <div id="videos-tips" class="section">
+            <button class="back-button" onclick="showSection('home')"><i class="fas fa-arrow-left"></i> Back</button>
+            <h2>Videos & Tips</h2>
+            
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <h3>Speech Therapy Techniques</h3>
+                <p>Learn basic techniques to improve speech clarity.</p>
+            </div>
+            
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <h3>Hearing Aid Maintenance</h3>
+                <p>Proper cleaning and care for your hearing aid.</p>
+            </div>
+            
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <h3>Communication Strategies</h3>
+                <p>Tips for better communication with hearing loss.</p>
+            </div>
+        </div>
+    </div>
 
-  <footer>
-    <p>© 2025 LUMEN Speech & Hearing | Hisar • Hansi • Bhiwani | @lumenhearingcare</p>
-  </footer>
+    <footer>
+        <p>LUMEN Speech & Hearing &copy; 2023. All rights reserved.</p>
+    </footer>
 
-  <script src="app.js"></script>
+    <script>
+        // Show/hide sections
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Progress Tracker Form Handling
+        document.getElementById('progress-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const entry = {
+                name: document.getElementById('patient-name').value,
+                date: document.getElementById('activity-date').value,
+                activity: document.getElementById('activity-done').value,
+                id: Date.now()
+            };
+            
+            saveProgressEntry(entry);
+            this.reset();
+            loadProgressEntries();
+        });
+
+        // Save progress entry to localStorage
+        function saveProgressEntry(entry) {
+            let entries = JSON.parse(localStorage.getItem('progressEntries')) || [];
+            entries.push(entry);
+            localStorage.setItem('progressEntries', JSON.stringify(entries));
+        }
+
+        // Load progress entries from localStorage
+        function loadProgressEntries() {
+            const entries = JSON.parse(localStorage.getItem('progressEntries')) || [];
+            const entriesContainer = document.getElementById('progress-entries');
+            
+            entriesContainer.innerHTML = '<h3>Previous Entries</h3>';
+            
+            if (entries.length === 0) {
+                entriesContainer.innerHTML += '<p>No entries yet.</p>';
+                return;
+            }
+            
+            entries.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(entry => {
+                const entryElement = document.createElement('div');
+                entryElement.className = 'entry-item';
+                entryElement.innerHTML = `
+                    <div>
+                        <strong>${entry.name}</strong> - ${new Date(entry.date).toLocaleDateString()}
+                        <p>${entry.activity}</p>
+                    </div>
+                    <button onclick="deleteProgressEntry(${entry.id})"><i class="fas fa-trash"></i></button>
+                `;
+                entriesContainer.appendChild(entryElement);
+            });
+        }
+
+        // Delete progress entry
+        function deleteProgressEntry(id) {
+            let entries = JSON.parse(localStorage.getItem('progressEntries')) || [];
+            entries = entries.filter(entry => entry.id !== id);
+            localStorage.setItem('progressEntries', JSON.stringify(entries));
+            loadProgressEntries();
+        }
+
+        // Appointments Form Handling
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const appointment = {
+                name: document.getElementById('appointment-name').value,
+                phone: document.getElementById('appointment-phone').value,
+                date: document.getElementById('appointment-date').value,
+                notes: document.getElementById('appointment-notes').value,
+                id: Date.now()
+            };
+            
+            saveAppointment(appointment);
+            this.reset();
+            loadAppointments();
+        });
+
+        // Save appointment to localStorage
+        function saveAppointment(appointment) {
+            let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            appointments.push(appointment);
+            localStorage.setItem('appointments', JSON.stringify(appointments));
+        }
+
+        // Load appointments from localStorage
+        function loadAppointments() {
+            const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            const appointmentsContainer = document.getElementById('appointment-entries');
+            
+            appointmentsContainer.innerHTML = '<h3>Upcoming Appointments</h3>';
+            
+            if (appointments.length === 0) {
+                appointmentsContainer.innerHTML += '<p>No appointments scheduled.</p>';
+                return;
+            }
+            
+            appointments.sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(appointment => {
+                const appointmentElement = document.createElement('div');
+                appointmentElement.className = 'entry-item';
+                appointmentElement.innerHTML = `
+                    <div>
+                        <strong>${appointment.name}</strong> - ${new Date(appointment.date).toLocaleString()}
+                        <p>Phone: ${appointment.phone}</p>
+                        <p>Notes: ${appointment.notes}</p>
+                    </div>
+                    <button onclick="deleteAppointment(${appointment.id})"><i class="fas fa-trash"></i></button>
+                `;
+                appointmentsContainer.appendChild(appointmentElement);
+            });
+        }
+
+        // Delete appointment
+        function deleteAppointment(id) {
+            let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+            appointments = appointments.filter(appointment => appointment.id !== id);
+            localStorage.setItem('appointments', JSON.stringify(appointments));
+            loadAppointments();
+        }
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgressEntries();
+            loadAppointments();
+            
+            // Register service worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                         });
+            }
+        });
+    </script>
 </body>
 </html>
+
+    
