@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUMEN Speech & Hearing</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="manifest" href="manifest.webmanifest"/>
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="LUMEN Logo" class="logo"/>
+    <h1>LUMEN Speech & Hearing</h1>
+  </header>
+
+  <main>
+    <section class="home">
+      <button onclick="showSection('speech')">🎤 Speech Therapy</button>
+      <button onclick="showSection('hearing')">👂 Hearing Aid Care</button>
+      <button onclick="showSection('progress')">📊 Progress</button>
+      <button onclick="showSection('appointments')">📅 Appointments</button>
+      <button onclick="showSection('videos')">🎥 Videos & Tips</button>
+    </section>
+
+    <section id="speech" class="hidden">
+      <h2>Speech Therapy</h2>
+      <ul id="speechList"></ul>
+    </section>
+
+    <section id="hearing" class="hidden">
+      <h2>Hearing Aid Care</h2>
+      <ul id="hearingList"></ul>
+    </section>
+
+    <section id="progress" class="hidden">
+      <h2>Progress Tracker</h2>
+      <form id="progressForm">
+        <input type="text" placeholder="Patient Name" required/>
+        <input type="date" required/>
+        <input type="text" placeholder="Activity Done" required/>
+        <button type="submit">Add Progress</button>
+      </form>
+      <ul id="progressList"></ul>
+    </section>
+
+    <section id="appointments" class="hidden">
+      <h2>Appointments</h2>
+      <form id="appointmentForm">
+        <input type="text" placeholder="Name" required/>
+        <input type="tel" placeholder="Phone" required/>
+        <input type="date" required/>
+        <textarea placeholder="Notes"></textarea>
+        <button type="submit">Book Appointment</button>
+      </form>
+      <ul id="appointmentList"></ul>
+    </section>
+
+    <section id="videos" class="hidden">
+      <h2>Videos & Tips</h2>
+      <ul id="videoList"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 LUMEN Speech & Hearing | Hisar • Hansi • Bhiwani | @lumenhearingcare</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
