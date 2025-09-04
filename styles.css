@@ -1,0 +1,89 @@
+:root {
+  --brand: #4a90e2;
+  --light: #f5faff;
+  --dark: #003366;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: var(--brand);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.logo {
+  width: 60px;
+  border-radius: 50%;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  background: var(--brand);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.hidden {
+  display: none;
+}
+
+form input, form textarea {
+  display: block;
+  width: 100%;
+  margin: 0.4rem 0;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background: var(--dark);
+  margin-top: 0.5rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: white;
+  margin: 0.3rem 0;
+  padding: 0.6rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer {
+  text-align: center;
+  padding: 0.8rem;
+  background: var(--dark);
+  color: white;
+  font-size: 0.9rem;
+}
