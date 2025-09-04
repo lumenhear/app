@@ -1,7 +1,7 @@
 {
   "name": "LUMEN Speech & Hearing",
   "short_name": "LUMEN",
-  "description": "App for speech therapy patients, hearing aid users, and their families",
+  "description": "Speech therapy and hearing aid care app for patients and families",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f5faff",
