@@ -4,638 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUMEN Speech & Hearing</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.webmanifest">
-    <style>
-        :root {
-            --primary-blue: #4a90e2;
-            --light-blue: #f5faff;
-            --dark-blue: #2c3e50;
-            --accent-yellow: #ffc107;
-            --text-dark: #333;
-            --text-light: #fff;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --radius: 16px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--light-blue);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: white;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--accent-yellow);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-blue);
-            font-size: 20px;
-        }
-
-        .logo-text {
-            color: var(--dark-blue);
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .user-actions {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-blue);
-            color: white;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary-blue);
-            color: var(--primary-blue);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #2c3e50 100%);
-            color: white;
-            border-radius: 0 0 var(--radius) var(--radius);
-            margin-bottom: 40px;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 60px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--dark-blue);
-            font-size: 2.2rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: white;
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background-color: var(--light-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: var(--primary-blue);
-            font-size: 28px;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 15px;
-            color: var(--dark-blue);
-        }
-
-        /* Disorders Section */
-        .disorders {
-            padding: 60px 0;
-            background-color: white;
-            border-radius: var(--radius);
-            margin-bottom: 40px;
-        }
-
-        .disorders-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 12px 24px;
-            background-color: var(--light-blue);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .tab-btn.active {
-            background-color: var(--primary-blue);
-            color: white;
-        }
-
-        .disorders-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .disorder-card {
-            background-color: var(--light-blue);
-            padding: 20px;
-            border-radius: var(--radius);
-        }
-
-        .disorder-card h4 {
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-        }
-
-        /* Login Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 40px;
-            border-radius: var(--radius);
-            width: 100%;
-            max-width: 450px;
-            box-shadow: var(--shadow);
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-        }
-
-        .form-options {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .modal-footer {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-blue);
-            color: white;
-            padding: 60px 0 30px;
-            margin-top: 60px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-column a:hover {
-            color: white;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#4a90e2">
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-ear-listen"></i>
-                </div>
-                <div class="logo-text">LUMEN</div>
-            </div>
-            <nav class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#disorders">Disorders</a>
-                <a href="#hearing-aid">Hearing Aid Care</a>
-                <a href="#about">About</a>
-            </nav>
-            <div class="user-actions">
-                <button class="btn btn-outline" id="loginBtn">Login</button>
-                <button class="btn btn-primary" id="signupBtn">Sign Up</button>
-            </div>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Your Journey to Better Communication Starts Here</h1>
-            <p>LUMEN provides personalized speech therapy and hearing aid support for patients and families</p>
-            <button class="btn btn-primary">Get Started</button>
-        </div>
-    </section>
+    <div id="app-container">
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title">How LUMEN Helps You</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-microphone-alt"></i>
-                    </div>
-                    <h3>Speech Therapy Materials</h3>
-                    <p>Access personalized exercises and activities tailored to your specific needs and progress level.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hearing"></i>
-                    </div>
-                    <h3>Hearing Aid Care</h3>
-                    <p>Step-by-step guides for maintenance, troubleshooting, and getting the most from your hearing aids.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Progress Tracking</h3>
-                    <p>Monitor your improvement over time with visual charts and detailed activity history.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Appointment Management</h3>
-                    <p>Keep track of your therapy sessions and never miss an appointment with helpful reminders.</p>
-                </div>
+        <section id="login-screen" class="app-section active">
+            <div class="login-container">
+                <img src="assets/logo.svg" alt="LUMEN Logo" class="logo">
+                <h1>Welcome to LUMEN</h1>
+                <p>Your partner in speech & hearing care.</p>
+                <form id="login-form">
+                    <input type="email" id="login-email" placeholder="Email Address" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <div id="login-error" class="error-message"></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Disorders Section -->
-    <section class="disorders" id="disorders">
-        <div class="container">
-            <h2 class="section-title">Speech & Language Disorders</h2>
-            <div class="disorders-tabs">
-                <button class="tab-btn active">Speech Sound</button>
-                <button class="tab-btn">Language</button>
-                <button class="tab-btn">Fluency</button>
-                <button class="tab-btn">Voice</button>
-                <button class="tab-btn">Neurological</button>
-                <button class="tab-btn">Childhood</button>
-            </div>
-            <div class="disorders-content">
-                <div class="disorder-card">
-                    <h4>Articulation Disorder</h4>
-                    <p>Difficulty producing specific speech sounds correctly, often substituting or omitting sounds.</p>
-                </div>
-                <div class="disorder-card">
-                    <h4>Phonological Disorder</h4>
-                    <p>Patterns of sound errors that affect entire classes of sounds, making speech difficult to understand.</p>
-                </div>
-                <div class="disorder-card">
-                    <h4>Childhood Apraxia of Speech</h4>
-                    <p>Motor speech disorder where the brain has difficulty coordinating the movements needed for speech.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <main id="main-app" class="hidden">
+            <header>
+                <img src="assets/logo.svg" alt="LUMEN Logo" class="header-logo">
+                <button id="logout-button">Logout</button>
+            </header>
 
-    <!-- Hearing Aid Care Section -->
-    <section class="features" id="hearing-aid">
-        <div class="container">
-            <h2 class="section-title">Hearing Aid Care & Services</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-battery-full"></i>
-                    </div>
-                    <h3>Battery Replacement</h3>
-                    <p>Learn how to properly change batteries and maximize their lifespan.</p>
+            <section id="dashboard-screen" class="app-section">
+                <h2 id="welcome-message">Welcome, Patient!</h2>
+                <div class="dashboard-grid">
+                    <button class="dashboard-button" data-target="therapy-screen">
+                        <img src="assets/icon-speech.svg" alt="">
+                        <span>My Speech Therapy</span>
+                    </button>
+                    <button class="dashboard-button" data-target="hearing-aid-screen">
+                        <img src="assets/icon-hearing.svg" alt="">
+                        <span>Hearing Aid Care</span>
+                    </button>
+                    <button class="dashboard-button" data-target="progress-screen">
+                        <img src="assets/icon-progress.svg" alt="">
+                        <span>My Progress</span>
+                    </button>
+                    <button class="dashboard-button" data-target="appointments-screen">
+                        <img src="assets/icon-appointments.svg" alt="">
+                        <span>My Appointments</span>
+                    </button>
+                    <button class="dashboard-button" data-target="videos-screen">
+                        <img src="assets/icon-videos.svg" alt="">
+                        <span>Videos & Tips</span>
+                    </button>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-pump-soap"></i>
-                    </div>
-                    <h3>Daily Cleaning</h3>
-                    <p>Step-by-step instructions for keeping your hearing aids clean and functional.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-toolbox"></i>
-                    </div>
-                    <h3>Troubleshooting</h3>
-                    <p>Solutions for common issues like no sound, feedback, or connectivity problems.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bluetooth-b"></i>
-                    </div>
-                    <h3>Bluetooth Pairing</h3>
-                    <p>Connect your hearing aids to smartphones, TVs, and other devices for enhanced listening.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Login to Your Account</h2>
-                <p>Access your personalized therapy plan and progress</p>
-            </div>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" placeholder="name@example.com" required>
+            <section id="therapy-screen" class="app-section hidden">
+                <button class="back-button" data-target="dashboard-screen">← Back</button>
+                <h2>My Speech Therapy Materials</h2>
+                <p id="therapy-info"></p>
+                <div id="therapy-content" class="content-container"></div>
+            </section>
+            
+            <section id="hearing-aid-screen" class="app-section hidden">
+                <button class="back-button" data-target="dashboard-screen">← Back</button>
+                <h2>Hearing Aid Care & Services</h2>
+                <div id="hearing-aid-content" class="content-container"></div>
+            </section>
+
+            <section id="progress-screen" class="app-section hidden">
+                <button class="back-button" data-target="dashboard-screen">← Back</button>
+                <h2>My Progress</h2>
+                <div class="form-container">
+                    <h3>Log a New Activity</h3>
+                    <form id="progress-form">
+                        <input type="date" id="progress-date" required>
+                        <textarea id="progress-notes" placeholder="Describe the activity and how it went..." required></textarea>
+                        <button type="submit">Save Progress</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" required>
-                </div>
-                <div class="form-options">
-                    <label>
-                        <input type="checkbox"> Remember me
-                    </label>
-                    <a href="#" style="color: var(--primary-blue);">Forgot password?</a>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
-            </form>
-            <div class="modal-footer">
-                <p>Don't have an account? <a href="#" style="color: var(--primary-blue);" id="switchToSignup">Sign up</a></p>
-            </div>
-        </div>
+                <div id="progress-list" class="content-container"><h3>Completed Activities</h3></div>
+            </section>
+
+            <section id="appointments-screen" class="app-section hidden">
+                <button class="back-button" data-target="dashboard-screen">← Back</button>
+                <h2>My Appointments</h2>
+                <div id="appointments-list" class="content-container"></div>
+            </section>
+
+            <section id="videos-screen" class="app-section hidden">
+                <button class="back-button" data-target="dashboard-screen">← Back</button>
+                <h2>Videos & Tips</h2>
+                <div id="videos-list" class="content-container"></div>
+            </section>
+        </main>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>LUMEN Speech & Hearing</h3>
-                    <p>Empowering patients and families through innovative therapy solutions and support.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#disorders">Disorders</a></li>
-                        <li><a href="#hearing-aid">Hearing Aid Care</a></li>
-                        <li><a href="#about">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Support Center</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> (800) 123-LUMEN</li>
-                        <li><i class="fas fa-envelope"></i> support@lumen.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Therapy Way, Health City</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 LUMEN Speech & Hearing. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
-    <script>
-        // Firebase configuration (replace with your actual config)
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "your-project.firebaseapp.com",
-            projectId: "your-project-id",
-            storageBucket: "your-project.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Initialize Firebase (commented out for now as we don't have actual keys)
-        // firebase.initializeApp(firebaseConfig);
-
-        // Modal functionality
-        const loginBtn = document.getElementById('loginBtn');
-        const signupBtn = document.getElementById('signupBtn');
-        const loginModal = document.getElementById('loginModal');
-        const switchToSignup = document.getElementById('switchToSignup');
-        const loginForm = document.getElementById('loginForm');
-
-        loginBtn.addEventListener('click', () => {
-            loginModal.style.display = 'flex';
-        });
-
-        signupBtn.addEventListener('click', () => {
-            loginModal.style.display = 'flex';
-            // In a real implementation, we would switch to signup form
-            alert('Sign up functionality would appear here');
-        });
-
-        switchToSignup.addEventListener('click', (e) => {
-            e.preventDefault();
-            // In a real implementation, we would switch to signup form
-            alert('Sign up form would appear here');
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-        });
-
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // In a real implementation, we would authenticate with Firebase
-            alert('Login functionality would connect to Firebase here');
-            loginModal.style.display = 'none';
-        });
-
-        // Tab functionality for disorders section
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                // In a real implementation, this would load the appropriate content
-            });
-        });
-
-        // Register service worker for PWA functionality
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
-                    .then((registration) => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    }, (error) => {
-                        console.log('ServiceWorker registration failed: ', error);
-                    });
-            });
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
